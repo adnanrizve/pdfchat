@@ -107,7 +107,7 @@ def load_llm():
 
     # Load the locally downloaded model here
     llm = CTransformers(
-        model = "models/llama-2-7b-chat.Q8_0.gguf"
+        model = "models/llama-2-7b-chat.Q8_0.gguf",
         #model = mdpath,
         #model_file = "llama-2-7b-chat.Q8_0.gguf",
         model_type="llama",
