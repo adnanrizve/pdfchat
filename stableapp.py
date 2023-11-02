@@ -102,12 +102,13 @@ def downloadmodel(model_id,model_filename,model_path_cache):
 #Loading the model
 def load_llm():
 
-
-    mdpath = downloadmodel("TheBloke/Llama-2-7b-Chat-GGUF","llama-2-7b-chat.Q8_0.gguf","./models")
+    #uncomment to allow the UI to download the model during first execution
+    #mdpath = downloadmodel("TheBloke/Llama-2-7b-Chat-GGUF","llama-2-7b-chat.Q8_0.gguf","./models")
 
     # Load the locally downloaded model here
     llm = CTransformers(
-        model = mdpath,
+        model = "models/llama-2-7b-chat.Q8_0.gguf"
+        #model = mdpath,
         #model_file = "llama-2-7b-chat.Q8_0.gguf",
         model_type="llama",
         max_new_tokens = 512,
