@@ -1,9 +1,0 @@
-langchain
-chainlit
-chromadb
-tiktoken
-PyPDF2
-ctransformers
-huggingface_hub
-transformers
-sentence_transformers
