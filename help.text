@@ -1,0 +1,44 @@
+sudo yum install -y gcc kernel-devel-$(uname -r)
+sudo wget https://us.download.nvidia.com/tesla/535.129.03/NVIDIA-Linux-x86_64-535.129.03.run
+sudo chmod +x NVIDIA-Linux-x86_64*.run
+sudo /bin/sh ./NVIDIA-Linux-x86_64*.run
+nvidia-smi -q | head
+---------
+download cuda toolkit redhat 9 
+
+
+wget https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda-repo-rhel9-12-3-local-12.3.1_545.23.08-1.x86_64.rpm
+sudo rpm -i cuda-repo-rhel9-12-3-local-12.3.1_545.23.08-1.x86_64.rpm
+sudo dnf clean all
+sudo dnf -y install cuda-toolkit-12-3
+
+
+/* not needed since we are install 12.3 above
+sudo dnf -y module install nvidia-driver:latest-dkms
+sudo dnf -y install cuda
+*/
+-------------
+nvcc -V
+------
+
+
+export PATH=/usr/local/cuda-12.3/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.3/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+-----------
+nvcc -V
+
+-----
+sudo ln -s /usr/local/cuda-12.3 /usr/local/cuda
+
+------
+
+
+
+export CMAKE_ARGS="-DLLAMA_CUBLAS=on"
+export FORCE_CMAKE=1
+export LLAMA_CUBLAS=1
+export CUDACXX=/usr/local/cuda-12.3/bin/nvcc 
+export CMAKE_ARGS="-DLLAMA_CUBLAS=on -DCMAKE_CUDA_ARCHITECTURES=native" 
+
+pip install llama-cpp-python --no-cache-dir --force-reinstall --upgrade
